@@ -31,11 +31,11 @@ require_once 'data.php';
     </header>
 
     <main>
-        <img src="/post-placeholder.png" alt="Post 1" width="300"/>
-        <h1>Post 1</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi cumque dolore eos exercitationem, impedit laudantium minima minus molestias quaerat quam, quidem repellendus sit temporibus veniam veritatis.</p>
-        <span>Robert Downey Jr.</span>
-        <p>2020.12.02</p>
+        <img src="/post-placeholder.png" alt="<?= $data['name'] ?>" width="300"/>
+        <h1><?= $data['name'] ?></h1>
+        <p><?= $data['author'] ?></p>
+        <p><?= $data['content'] ?></p>
+        <p><?= $data['created_at'] ?></p>
     </main>
 
     <footer>

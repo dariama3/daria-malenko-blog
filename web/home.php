@@ -39,6 +39,7 @@ require_once 'data.php';
     </header>
 
     <main>
+        <!-- @TODO: Implement recently viewed posts -->
         <section title="Recently Viewed Posts">
             <h2>Recently Viewed Posts</h2>
             <div class="post-list">

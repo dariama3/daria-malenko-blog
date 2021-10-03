@@ -78,3 +78,49 @@ function catalogGetPosts(): array
         ],
     ];
 }
+
+function catalogGetCategoryPosts(int $categoryId): array
+{
+    $categories = catalogGetCategories();
+
+    if (!isset($categories[$categoryId])) {
+        throw new InvalidArgumentException("Category with ID $categoryId does not exist");
+    }
+
+    $postsForCategory = [];
+    $posts = catalogGetPosts();
+
+    foreach ($categories[$categoryId]['posts'] as $postId) {
+        if (!isset($posts[$postId])) {
+            throw new InvalidArgumentException("Post with ID $postId from category $categoryId does not exist");
+        }
+
+        $postsForCategory[] = $posts[$postId];
+    }
+
+    return $postsForCategory;
+}
+
+function catalogGetCategoryByUrl(string $url): ?array
+{
+    $data = array_filter(
+        catalogGetCategories(),
+        static function ($category) use ($url) {
+            return $category['url'] === $url;
+        }
+    );
+
+    return array_pop($data);
+}
+
+function catalogGetPostByUrl(string $url): ?array
+{
+    $data = array_filter(
+        catalogGetPosts(),
+        static function ($post) use ($url) {
+            return $post['url'] === $url;
+        }
+    );
+
+    return array_pop($data);
+}

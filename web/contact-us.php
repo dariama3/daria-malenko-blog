@@ -1,3 +1,6 @@
+<?php
+require_once 'data.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,14 +17,17 @@
 <body>
     <header>
         <a href="/" title="{DV.Campus} PHP Framework">
-            <img src="logo.jpg" alt="{DV.Campus} Logo" width="200"/>
+            <img src="/logo.jpg" alt="{DV.Campus} Logo" width="200"/>
         </a>
-        <menu>
-            <li>Category 1</li>
-            <li>Category 2</li>
-            <li>Category 3</li>
-            <li>Category 4</li>
-        </menu>
+        <nav>
+            <ul>
+                <?php foreach (catalogGetCategories() as $category) : ?>
+                    <li>
+                        <a href="/<?= $category['url'] ?>"><?= $category['name'] ?></a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </nav>
     </header>
 
     <main>

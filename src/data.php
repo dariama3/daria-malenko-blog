@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-function catalogGetCategories(): array
+function blogGetCategories(): array
 {
     return [
         1 => [
@@ -25,7 +25,7 @@ function catalogGetCategories(): array
     ];
 }
 
-function catalogGetPosts(): array
+function blogGetPosts(): array
 {
     return [
         1 => [
@@ -79,16 +79,16 @@ function catalogGetPosts(): array
     ];
 }
 
-function catalogGetCategoryPosts(int $categoryId): array
+function blogGetCategoryPosts(int $categoryId): array
 {
-    $categories = catalogGetCategories();
+    $categories = blogGetCategories();
 
     if (!isset($categories[$categoryId])) {
         throw new InvalidArgumentException("Category with ID $categoryId does not exist");
     }
 
     $postsForCategory = [];
-    $posts = catalogGetPosts();
+    $posts = blogGetPosts();
 
     foreach ($categories[$categoryId]['posts'] as $postId) {
         if (!isset($posts[$postId])) {
@@ -101,10 +101,10 @@ function catalogGetCategoryPosts(int $categoryId): array
     return $postsForCategory;
 }
 
-function catalogGetCategoryByUrl(string $url): ?array
+function blogGetCategoryByUrl(string $url): ?array
 {
     $data = array_filter(
-        catalogGetCategories(),
+        blogGetCategories(),
         static function ($category) use ($url) {
             return $category['url'] === $url;
         }
@@ -113,10 +113,10 @@ function catalogGetCategoryByUrl(string $url): ?array
     return array_pop($data);
 }
 
-function catalogGetPostByUrl(string $url): ?array
+function blogGetPostByUrl(string $url): ?array
 {
     $data = array_filter(
-        catalogGetPosts(),
+        blogGetPosts(),
         static function ($post) use ($url) {
             return $post['url'] === $url;
         }

@@ -29,7 +29,7 @@
     </a>
     <nav>
         <ul>
-            <?php foreach (catalogGetCategories() as $category) : ?>
+            <?php foreach (blogGetCategories() as $category) : ?>
                 <li>
                     <a href="/<?= $category['url'] ?>"><?= $category['name'] ?></a>
                 </li>

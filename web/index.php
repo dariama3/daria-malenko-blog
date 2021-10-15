@@ -3,16 +3,15 @@ declare(strict_types=1);
 
 require_once '../vendor/autoload.php';
 
-$requestDispatcher = new \Dariam\Framework\Http\RequestDispatcher([
-    new \Dariam\Cms\Router(),
-    new \Dariam\Catalog\Router(),
-    new \Dariam\ContactUs\Router(),
-]);
-$requestDispatcher->dispatch();
+$containerBuilder = new \DI\ContainerBuilder();
 
-exit;
-
-switch ($requestUri) {
-    default:
-        break;
+try {
+    $containerBuilder->addDefinitions('../config/di.php');
+    $container = $containerBuilder->build();
+    /** @var \Dariam\Framework\Http\RequestDispatcher $requestDispatcher */
+    $requestDispatcher = $container->get(\Dariam\Framework\Http\RequestDispatcher::class);
+    $requestDispatcher->dispatch();
+} catch (\Exception $e) {
+    echo "{$e->getMessage()} in file {$e->getFile()} at line {$e->getLine()}";
+    exit(1);
 }

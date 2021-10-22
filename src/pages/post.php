@@ -1,7 +1,10 @@
+<?php
+/** @var \Dariam\Blog\Model\Post\Entity $post */
+?>
 <section title="Post">
-    <img src="/post-placeholder.png" alt="<?= $data['name'] ?>" width="300"/>
-    <h1><?= $data['name'] ?></h1>
-    <p><?= $data['author'] ?></p>
-    <p><?= $data['content'] ?></p>
-    <p><?= $data['created_at'] ?></p>
+    <img src="/post-placeholder.png" alt="<?= $post->getName() ?>" width="300"/>
+    <h1><?= $post->getName() ?></h1>
+    <p><?= $post->getAuthor() ?></p>
+    <p><?= $post->getContent() ?></p>
+    <p><?= $post->getCreatedAt() ?></p>
 </section>

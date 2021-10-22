@@ -78,37 +78,3 @@ function blogGetPosts(): array
         ],
     ];
 }
-
-function blogGetCategoryPosts(int $categoryId): array
-{
-    $categories = blogGetCategories();
-
-    if (!isset($categories[$categoryId])) {
-        throw new InvalidArgumentException("Category with ID $categoryId does not exist");
-    }
-
-    $postsForCategory = [];
-    $posts = blogGetPosts();
-
-    foreach ($categories[$categoryId]['posts'] as $postId) {
-        if (!isset($posts[$postId])) {
-            throw new InvalidArgumentException("Post with ID $postId from category $categoryId does not exist");
-        }
-
-        $postsForCategory[] = $posts[$postId];
-    }
-
-    return $postsForCategory;
-}
-
-function blogGetPostByUrl(string $url): ?array
-{
-    $data = array_filter(
-        blogGetPosts(),
-        static function ($post) use ($url) {
-            return $post['url'] === $url;
-        }
-    );
-
-    return array_pop($data);
-}

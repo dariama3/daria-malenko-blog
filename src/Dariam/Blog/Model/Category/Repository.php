@@ -25,17 +25,17 @@ class Repository
                 ->setCategoryId(1)
                 ->setName('Avengers')
                 ->setUrl('avengers')
-                ->setPosts([1, 2, 3]),
+                ->setPostsIds([1, 2, 3]),
             2 => $this->makeEntity()
                 ->setCategoryId(1)
                 ->setName('Star Wars')
                 ->setUrl('star-wars')
-                ->setPosts([3, 4, 5]),
+                ->setPostsIds([3, 4, 5]),
             3 => $this->makeEntity()
                 ->setCategoryId(1)
                 ->setName('Pokemon')
                 ->setUrl('pokemon')
-                ->setPosts([2, 4, 6]),
+                ->setPostsIds([2, 4, 6]),
         ];
     }
 

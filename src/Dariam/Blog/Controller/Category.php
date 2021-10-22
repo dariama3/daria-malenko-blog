@@ -21,6 +21,7 @@ class Category implements ControllerInterface
     public function execute(): string
     {
         $category = $this->request->getParameter('category');
+        $posts = $this->request->getParameter('posts');
         $page = 'category.php';
 
         ob_start();

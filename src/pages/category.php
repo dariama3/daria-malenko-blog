@@ -1,7 +1,10 @@
+<?php
+/** @var \Dariam\Blog\Model\Category\Entity $category */
+?>
 <section title="Posts">
-    <h1><?= $data['name'] ?></h1>
+    <h1><?= $category->getName() ?></h1>
     <div class="post-list">
-        <?php foreach (blogGetCategoryPosts($data['category_id']) as $post) : ?>
+        <?php foreach (blogGetCategoryPosts($category->getCategoryId()) as $post) : ?>
             <div class="post">
                 <a href="/<?= $post['url'] ?>" title="<?= $post['name'] ?>">
                     <img src="/post-placeholder.png" alt="<?= $post['name'] ?>" width="200"/>

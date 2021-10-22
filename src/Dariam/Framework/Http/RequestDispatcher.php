@@ -12,17 +12,17 @@ class RequestDispatcher
 
     private \Dariam\Framework\Http\Request $request;
 
-    private \DI\Container $container;
+    private \DI\FactoryInterface $factory;
 
     /**
      * @param array $routers
      * @param Request $request
-     * @param \DI\Container $container
+     * @param \DI\FactoryInterface $factory
      */
     public function __construct(
         array $routers,
         \Dariam\Framework\Http\Request $request,
-        \DI\Container $container
+        \DI\FactoryInterface $factory
     ) {
         foreach ($routers as $router) {
             if (!($router instanceof RouterInterface)) {
@@ -32,7 +32,7 @@ class RequestDispatcher
 
         $this->routers = $routers;
         $this->request = $request;
-        $this->container = $container;
+        $this->factory = $factory;
     }
 
     public function dispatch()
@@ -41,7 +41,7 @@ class RequestDispatcher
 
         foreach ($this->routers as $router) {
             if ($controllerClass = $router->match($requestUrl)) {
-                $controller = $this->container->get($controllerClass);
+                $controller = $this->factory->get($controllerClass);
 
                 if (!($controller instanceof ControllerInterface)) {
                     throw new \InvalidArgumentException(

@@ -1,5 +1,5 @@
 <?php
-    require_once '../src/data.php';
+/** @var \Dariam\Framework\View\Renderer $this */
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,21 +25,15 @@
 <body>
 <header>
     <a href="/" title="{DV.Campus} PHP Framework">
-        <img src="/logo.jpg" alt="{DV.Campus} Logo" width="200"/>
+        <img src="/logo.jpg" alt="Dariam Logo" width="200"/>
     </a>
     <nav>
-        <ul>
-            <?php foreach (blogGetCategories() as $categoryData) : ?>
-                <li>
-                    <a href="/<?= $categoryData['url'] ?>"><?= $categoryData['name'] ?></a>
-                </li>
-            <?php endforeach; ?>
-        </ul>
+        <?= $this->render(\Dariam\Blog\Block\CategoryList::class) ?>
     </nav>
 </header>
 
 <main>
-    <?php require_once "../src/pages/$page" ?>
+    <?= $this->render($this->getContent()) ?>
 </main>
 
 <footer>

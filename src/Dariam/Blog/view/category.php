@@ -1,11 +1,10 @@
 <?php
-/** @var \Dariam\Blog\Model\Category\Entity $category */
-/** @var \Dariam\Blog\Model\Post\Entity[] $posts */
+/** @var \Dariam\Blog\Block\Category $block */
 ?>
 <section title="Posts">
-    <h1><?= $category->getName() ?></h1>
+    <h1><?= $block->getCategory()->getName() ?></h1>
     <div class="post-list">
-        <?php foreach ($posts as $post) : ?>
+        <?php foreach ($block->getCategoryPosts() as $post) : ?>
             <div class="post">
                 <a href="/<?= $post->getUrl() ?>" title="<?= $post->getName() ?>">
                     <img src="/post-placeholder.png" alt="<?= $post->getName() ?>" width="200"/>

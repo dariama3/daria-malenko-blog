@@ -1,5 +1,6 @@
 <?php
-/** @var \Dariam\Blog\Model\Post\Entity $post */
+/** @var \Dariam\Blog\Block\Post $block */
+$post = $block->getPost();
 ?>
 <section title="Post">
     <img src="/post-placeholder.png" alt="<?= $post->getName() ?>" width="300"/>

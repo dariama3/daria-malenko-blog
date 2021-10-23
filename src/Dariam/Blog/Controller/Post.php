@@ -7,24 +7,19 @@ use Dariam\Framework\Http\ControllerInterface;
 
 class Post implements ControllerInterface
 {
-    private \Dariam\Framework\Http\Request $request;
+    private \Dariam\Framework\View\Renderer $renderer;
 
     /**
-     * @param \Dariam\Framework\Http\Request $request
+     * @param \Dariam\Framework\View\Renderer $renderer
      */
     public function __construct(
-        \Dariam\Framework\Http\Request $request
+        \Dariam\Framework\View\Renderer $renderer
     ) {
-        $this->request = $request;
+        $this->renderer = $renderer;
     }
 
     public function execute(): string
     {
-        $post = $this->request->getParameter('post');
-        $page = 'post.php';
-
-        ob_start();
-        require_once "../src/page.php";
-        return ob_get_clean();
+        return (string) $this->renderer->setContent(\Dariam\Blog\Block\Post::class);
     }
 }

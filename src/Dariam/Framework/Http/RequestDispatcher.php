@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Dariam\Framework\Http;
 
+use Dariam\Framework\Http\Response\NotFound;
+
 class RequestDispatcher
 {
     /**
@@ -35,13 +37,18 @@ class RequestDispatcher
         $this->factory = $factory;
     }
 
-    public function dispatch()
+    /**
+     * @throws \DI\DependencyException
+     * @throws \DI\NotFoundException
+     * @return void
+     */
+    public function dispatch(): void
     {
         $requestUrl = $this->request->getRequestUrl();
 
         foreach ($this->routers as $router) {
             if ($controllerClass = $router->match($requestUrl)) {
-                $controller = $this->factory->get($controllerClass);
+                $controller = $this->factory->make($controllerClass);
 
                 if (!($controller instanceof ControllerInterface)) {
                     throw new \InvalidArgumentException(
@@ -49,16 +56,14 @@ class RequestDispatcher
                     );
                 }
 
-                $html = $controller->execute();
+                $response = $controller->execute();
             }
         }
 
-        if (!isset($html)) {
-            header("HTTP/1.0 404 Not Found");
-            exit(0);
+        if (!isset($response)) {
+            $response = $this->factory->make(NotFound::class);
         }
 
-        header('Content-Type: text/html; charset=utf-8');
-        echo $html;
+        $response->send();
     }
 }

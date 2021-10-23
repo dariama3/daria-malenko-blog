@@ -4,15 +4,30 @@ declare(strict_types=1);
 namespace Dariam\ContactUs\Controller;
 
 use Dariam\Framework\Http\ControllerInterface;
+use Dariam\Framework\Http\Response\Raw;
+use Dariam\Framework\View\Block;
 
 class Form implements ControllerInterface
 {
-    public function execute(): string
-    {
-        $page = 'contact-us.php';
+    private \Dariam\Framework\View\PageResponse $pageResponse;
 
-        ob_start();
-        require_once "../src/page.php";
-        return ob_get_clean();
+    /**
+     * @param \Dariam\Framework\View\PageResponse $pageResponse
+     */
+    public function __construct(
+        \Dariam\Framework\View\PageResponse $pageResponse
+    ) {
+        $this->pageResponse = $pageResponse;
+    }
+
+    /**
+     * @return Raw
+     */
+    public function execute(): Raw
+    {
+        return $this->pageResponse->setBody(
+            Block::class,
+            '../src/Dariam/ContactUs/view/contact-us.php'
+        );
     }
 }

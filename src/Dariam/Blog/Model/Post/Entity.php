@@ -13,7 +13,7 @@ class Entity
 
     private string $content;
 
-    private string $author;
+    private int $authorId;
 
     private string $createdAt;
 
@@ -94,20 +94,20 @@ class Entity
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getAuthor(): string
+    public function getAuthorId(): int
     {
-        return $this->author;
+        return $this->authorId;
     }
 
     /**
-     * @param string $author
+     * @param int $authorId
      * @return $this
      */
-    public function setAuthor(string $author): Entity
+    public function setAuthorId(int $authorId): Entity
     {
-        $this->author = $author;
+        $this->authorId = $authorId;
 
         return $this;
     }

@@ -14,11 +14,14 @@
         }
 
         .post-list {
+            column-gap: 1rem;
             display: flex;
         }
 
         .post-list .post {
+            border: 1px dashed;
             max-width: 30%;
+            text-align: center;
         }
     </style>
 </head>

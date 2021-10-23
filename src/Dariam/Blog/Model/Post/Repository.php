@@ -25,38 +25,38 @@ class Repository
                 ->setName('Post 1')
                 ->setUrl('post-1')
                 ->setContent('Post 1 Content')
-                ->setAuthor('Robert Downey Jr.')
+                ->setAuthorId(1)
                 ->setCreatedAt('2019.11.28'),
             2 => $this->makeEntity()->setPostId(2)
                 ->setName('Post 2')
                 ->setUrl('post-2')
                 ->setContent('Post 2 Content')
-                ->setAuthor('Chris Evans')
+                ->setAuthorId(2)
                 ->setCreatedAt('2019.12.01'),
             3 => $this->makeEntity()->setPostId(3)
                 ->setName('Post 3')
                 ->setUrl('post-3')
                 ->setContent('Post 3 Content')
-                ->setAuthor('Scarlett Johansson')
+                ->setAuthorId(3)
                 ->setCreatedAt('2019.12.02'),
             4 => $this->makeEntity()->setPostId(4)
                 ->setName('Post 4')
                 ->setUrl('post-4')
                 ->setContent('Post 4 Content')
-                ->setAuthor('Zoe Saldana')
+                ->setAuthorId(1)
                 ->setCreatedAt('2020.02.02'),
             5 => $this->makeEntity()->setPostId(5)
                 ->setName('Post 5')
                 ->setUrl('post-5')
                 ->setContent('Post 5 Content')
-                ->setAuthor('Chris Pratt')
+                ->setAuthorId(4)
                 ->setCreatedAt('2020.10.02'),
             6 => $this->makeEntity()->setPostId(6)
                 ->setName('Post 6')
                 ->setUrl('post-6')
                 ->setContent('Post 6 Content')
-                ->setAuthor('Chris Hemsworth')
-                ->setCreatedAt('2020.12.04')
+                ->setAuthorId(4)
+                ->setCreatedAt('2020.12.04'),
         ];
     }
 
@@ -66,25 +66,39 @@ class Repository
      */
     public function getByUrl(string $url): ?Entity
     {
-        $data = array_filter(
+        $posts = array_filter(
             $this->getList(),
             static function ($post) use ($url) {
                 return $post->getUrl() === $url;
             }
         );
 
-        return array_pop($data);
+        return array_pop($posts);
     }
 
     /**
      * @param array $postIds
      * @return Entity[]
      */
-    public function getByIds(array $postIds)
+    public function getByIds(array $postIds): array
     {
         return array_intersect_key(
             $this->getList(),
             array_flip($postIds)
+        );
+    }
+
+    /**
+     * @param int $authorId
+     * @return Entity[]
+     */
+    public function getByAuthorId(int $authorId): array
+    {
+        return array_filter(
+            $this->getList(),
+            static function ($post) use ($authorId) {
+                return $post->getAuthorId() === $authorId;
+            }
         );
     }
 

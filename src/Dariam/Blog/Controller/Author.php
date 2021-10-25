@@ -6,7 +6,7 @@ namespace Dariam\Blog\Controller;
 use Dariam\Framework\Http\ControllerInterface;
 use Dariam\Framework\Http\Response\Raw;
 
-class Post implements ControllerInterface
+class Author implements ControllerInterface
 {
     private \Dariam\Framework\View\PageResponse $pageResponse;
 
@@ -24,6 +24,6 @@ class Post implements ControllerInterface
      */
     public function execute(): Raw
     {
-        return $this->pageResponse->setBody(\Dariam\Blog\Block\Post::class);
+        return $this->pageResponse->setBody(\Dariam\Blog\Block\Author::class);
     }
 }

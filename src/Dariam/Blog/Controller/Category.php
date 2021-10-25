@@ -4,27 +4,26 @@ declare(strict_types=1);
 namespace Dariam\Blog\Controller;
 
 use Dariam\Framework\Http\ControllerInterface;
+use Dariam\Framework\Http\Response\Raw;
 
 class Category implements ControllerInterface
 {
-    private \Dariam\Framework\Http\Request $request;
+    private \Dariam\Framework\View\PageResponse $pageResponse;
 
     /**
-     * @param \Dariam\Framework\Http\Request $request
+     * @param \Dariam\Framework\View\PageResponse $pageResponse
      */
     public function __construct(
-        \Dariam\Framework\Http\Request $request
+        \Dariam\Framework\View\PageResponse $pageResponse
     ) {
-        $this->request = $request;
+        $this->pageResponse = $pageResponse;
     }
 
-    public function execute(): string
+    /**
+     * @return Raw
+     */
+    public function execute(): Raw
     {
-        $data = $this->request->getParameter('category');
-        $page = 'category.php';
-
-        ob_start();
-        require_once "../src/page.php";
-        return ob_get_clean();
+        return $this->pageResponse->setBody(\Dariam\Blog\Block\Category::class);
     }
 }

@@ -1,5 +1,5 @@
 <?php
-    require_once '../src/data.php';
+/** @var \Dariam\Framework\View\Renderer $this */
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,32 +14,29 @@
         }
 
         .post-list {
+            column-gap: 1rem;
             display: flex;
         }
 
         .post-list .post {
+            border: 1px dashed;
             max-width: 30%;
+            text-align: center;
         }
     </style>
 </head>
 <body>
 <header>
     <a href="/" title="{DV.Campus} PHP Framework">
-        <img src="/logo.jpg" alt="{DV.Campus} Logo" width="200"/>
+        <img src="/logo.jpg" alt="Dariam Logo" width="200"/>
     </a>
     <nav>
-        <ul>
-            <?php foreach (blogGetCategories() as $category) : ?>
-                <li>
-                    <a href="/<?= $category['url'] ?>"><?= $category['name'] ?></a>
-                </li>
-            <?php endforeach; ?>
-        </ul>
+        <?= $this->render(\Dariam\Blog\Block\CategoryList::class) ?>
     </nav>
 </header>
 
 <main>
-    <?php require_once "../src/pages/$page" ?>
+    <?= $this->render($this->getContent(), $this->getContentBlockTemplate()) ?>
 </main>
 
 <footer>

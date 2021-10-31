@@ -72,10 +72,10 @@ DROP TABLE IF EXISTS `category_post`;
 #---
 CREATE TABLE `category_post` (
     `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
-    `post_id` int unsigned DEFAULT NULL COMMENT 'Post ID',
-    `category_id` int unsigned DEFAULT NULL COMMENT 'Category ID',
+    `post_id` int unsigned NOT NULL COMMENT 'Post ID',
+    `category_id` int unsigned NOT NULL COMMENT 'Category ID',
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Category Entity';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Category Post Relation';
 #---
 ALTER TABLE `category_post`
     ADD CONSTRAINT `FK_CATEGORY_POST_POST_ID`
@@ -103,3 +103,48 @@ VALUES (1, 1),
        (15, 5);
 #---
 DROP TABLE IF EXISTS `daily_statistics`;
+#---
+CREATE TABLE `daily_statistics` (
+    `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+    `post_id` int unsigned NOT NULL COMMENT 'Post ID',
+    `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Date',
+    `views` int unsigned NOT NULL DEFAULT 0 COMMENT 'Views',
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Daily Statistics';
+#---
+ALTER TABLE `daily_statistics`
+    ADD CONSTRAINT `FK_DAILY_STATISTICS_POST_ID`
+        FOREIGN KEY (`post_id`)
+        REFERENCES `post` (`post_id`) ON DELETE CASCADE;
+#---
+INSERT INTO `daily_statistics` (`post_id`, `date`, `views`)
+VALUES (1, '2021-10-30', 1),
+       (2, '2021-10-30', 9),
+       (3, '2021-10-30', 2),
+       (4, '2021-10-30', 40),
+       (5, '2021-10-30', 7),
+       (6, '2021-10-30', 13),
+       (7, '2021-10-30', 3),
+       (8, '2021-10-30', 21),
+       (9, '2021-10-30', 10),
+       (10, '2021-10-30', 5),
+       (11, '2021-10-30', 1),
+       (12, '2021-10-30', 10),
+       (13, '2021-10-30', 4),
+       (14, '2021-10-30', 12),
+       (15, '2021-10-30', 5),
+       (1, '2021-10-31', 2),
+       (2, '2021-10-31', 23),
+       (3, '2021-10-31', 7),
+       (4, '2021-10-31', 34),
+       (5, '2021-10-31', 16),
+       (6, '2021-10-31', 3),
+       (7, '2021-10-31', 18),
+       (8, '2021-10-31', 1),
+       (9, '2021-10-31', 0),
+       (10, '2021-10-31', 4),
+       (11, '2021-10-31', 0),
+       (12, '2021-10-31', 1),
+       (13, '2021-10-31', 14),
+       (14, '2021-10-31', 9),
+       (15, '2021-10-31', 5);

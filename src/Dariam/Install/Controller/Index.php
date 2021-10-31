@@ -28,9 +28,13 @@ class Index implements \Dariam\Framework\Http\ControllerInterface
      */
     public function execute(): Html
     {
-        $connection = $this->adapter->getConnection();
-
-        $this->html->setBody('Testing controller');
+        try {
+//            $sql = file_get_contents('../config/schema.sql');
+            $connection = $this->adapter->getConnection();
+            $this->html->setBody('Successful DB connection!');
+        } catch (\Exception $e) {
+            $this->html->setBody($e->getMessage());
+        }
 
         return $this->html;
     }

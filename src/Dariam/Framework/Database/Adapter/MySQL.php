@@ -13,6 +13,8 @@ class MySQL implements AdapterInterface
     public const DB_HOST = 'host';
     public const DB_PORT = 'port';
 
+    private static \PDO $connection;
+
     /**
      * @param array $connectionParams
      */
@@ -22,7 +24,27 @@ class MySQL implements AdapterInterface
         $this->connectionParams = $connectionParams;
     }
 
-    public function getConnection()
+    /**
+     * @return \PDO
+     */
+    public function getConnection(): \PDO
     {
+        if (!isset(self::$connection)) {
+            self::$connection = new \PDO(
+                sprintf(
+                    "mysql:host=%s;port=%s;dbname=%s;charset=utf8mb4;",
+                    $this->connectionParams[self::DB_HOST],
+                    $this->connectionParams[self::DB_PORT],
+                    $this->connectionParams[self::DB_NAME]
+                ),
+                $this->connectionParams[self::DB_USER],
+                $this->connectionParams[self::DB_PASSWORD],
+                [
+                    \PDO::ERRMODE_EXCEPTION
+                ]
+            );
+        }
+
+        return self::$connection;
     }
 }

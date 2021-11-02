@@ -1,3 +1,11 @@
+DROP TABLE IF EXISTS `daily_statistics`;
+#---
+DROP TABLE IF EXISTS `category_post`;
+#---
+DROP TABLE IF EXISTS `category`;
+#---
+DROP TABLE IF EXISTS `post`;
+#---
 DROP TABLE IF EXISTS `author`;
 #---
 CREATE TABLE `author` (
@@ -13,8 +21,6 @@ VALUES ('Robert Downey Jr.', 'robert-downey-jr'),
        ('Scarlett Johansson', 'scarlett-johansson'),
        ('Chris Hemsworth', 'chris-hemsworth'),
        ('Mark Ruffalo', 'mark-ruffalo');
-#---
-DROP TABLE IF EXISTS `post`;
 #---
 CREATE TABLE `post` (
     `post_id` int unsigned NOT NULL AUTO_INCREMENT COMMENT 'Post ID',
@@ -52,8 +58,6 @@ VALUES ('Post 1', 'post-1', 'Lorem ipsum dolor sit amet', 1),
        ('Post 14', 'post-14', 'Lorem ipsum dolor sit amet', 3),
        ('Post 15', 'post-15', 'Lorem ipsum dolor sit amet', 3);
 #---
-DROP TABLE IF EXISTS `category`;
-#---
 CREATE TABLE `category` (
     `category_id` int unsigned NOT NULL AUTO_INCREMENT COMMENT 'Category ID',
     `name` varchar(127) NOT NULL COMMENT 'Name',
@@ -67,8 +71,6 @@ VALUES ('Avengers', 'avengers'),
        ('Pokemon', 'pokemon'),
        ('Skyrim', 'skyrim'),
        ('Justice League', 'justice-league');
-#---
-DROP TABLE IF EXISTS `category_post`;
 #---
 CREATE TABLE `category_post` (
     `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
@@ -101,8 +103,6 @@ VALUES (1, 1),
        (13, 4),
        (14, 2),
        (15, 5);
-#---
-DROP TABLE IF EXISTS `daily_statistics`;
 #---
 CREATE TABLE `daily_statistics` (
     `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',

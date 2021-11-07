@@ -107,21 +107,23 @@ class GenerateData extends \Symfony\Component\Console\Command\Command
     {
         $statement = $this->adapter->getConnection()
             ->prepare(<<<SQL
-                INSERT INTO author (`name`, `url`)
-                VALUES (:name, :url);
+                INSERT INTO author (`firstname`, `lastname`, `url`)
+                VALUES (:firstname, :lastname, :url);
             SQL);
 
         for ($i = 1; $i <= self::AUTHOR_COUNT; $i++) {
-            $name = $this->getRandomName() . ' ' . $this->getRandomSecondName();
+            $firstname = $this->getRandomName();
+            $lastname = $this->getRandomLastName();
 
-            $statement->bindValue(':name', $name);
-            $statement->bindValue(':url', str_replace(' ', '-', strtolower($name)));
+            $statement->bindValue(':firstname', $firstname);
+            $statement->bindValue(':lastname', $lastname);
+            $statement->bindValue(':url', str_replace(' ', '-', strtolower("$firstname $lastname")));
             $statement->execute();
         }
     }
 
     /**
-     * Insert posts.
+     * Insert 5-20 posts per author.
      *
      * @return void
      */

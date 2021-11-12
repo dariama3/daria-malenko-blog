@@ -5,6 +5,8 @@ namespace Dariam\Blog\Model\Category;
 
 class Repository
 {
+    public const TABLE = 'category';
+
     private \DI\FactoryInterface $factory;
 
     /**

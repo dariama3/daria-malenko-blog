@@ -10,17 +10,18 @@ DROP TABLE IF EXISTS `author`;
 #---
 CREATE TABLE `author` (
     `author_id` int unsigned NOT NULL AUTO_INCREMENT COMMENT 'Author ID',
-    `name` varchar(127) NOT NULL COMMENT 'Name',
+    `firstname` varchar(127) NOT NULL COMMENT 'Firstname',
+    `lastname` varchar(127) NOT NULL COMMENT 'Lastname',
     `url` varchar(127) NOT NULL COMMENT 'URL',
     PRIMARY KEY (`author_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Author Entity';
 #---
-INSERT INTO `author` (`name`, `url`)
-VALUES ('Robert Downey Jr.', 'robert-downey-jr'),
-       ('Chris Evans', 'chris-evans'),
-       ('Scarlett Johansson', 'scarlett-johansson'),
-       ('Chris Hemsworth', 'chris-hemsworth'),
-       ('Mark Ruffalo', 'mark-ruffalo');
+INSERT INTO `author` (`firstname`, `lastname`, `url`)
+VALUES ('Robert', 'Downey Jr.', 'robert-downey-jr'),
+       ('Chris', 'Evans', 'chris-evans'),
+       ('Scarlett', 'Johansson', 'scarlett-johansson'),
+       ('Chris', 'Hemsworth', 'chris-hemsworth'),
+       ('Mark', 'Ruffalo', 'mark-ruffalo');
 #---
 CREATE TABLE `post` (
     `post_id` int unsigned NOT NULL AUTO_INCREMENT COMMENT 'Post ID',

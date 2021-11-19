@@ -22,9 +22,9 @@ SELECT `author`.*, COUNT(*) as `number_of_posts` FROM `author`
     GROUP BY `author`.`author_id`
     ORDER BY `number_of_posts` DESC;
 #--- Categories with the highest number of authors
-SELECT `category`.*, COUNT(DISTINCT `post`.`author_id`) as `number_of_authors` FROM `category_post`
+SELECT `category`.*, COUNT(DISTINCT `post`.`author_id`) as `number_of_authors` FROM `category`
+    JOIN `category_post` USING(`category_id`)
     JOIN `post` USING(`post_id`)
-    JOIN `category` USING(`category_id`)
     GROUP BY `category_post`.`category_id`
     ORDER BY `number_of_authors` DESC;
 

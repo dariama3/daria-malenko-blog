@@ -16,6 +16,7 @@
         .post-list {
             column-gap: 1rem;
             display: flex;
+            flex-wrap: wrap;
         }
 
         .post-list .post {

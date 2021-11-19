@@ -7,7 +7,9 @@ class Entity
 {
     private int $authorId;
 
-    private string $name;
+    private string $firstname;
+
+    private string $lastname;
 
     private string $url;
 
@@ -33,18 +35,37 @@ class Entity
     /**
      * @return string
      */
-    public function getName(): string
+    public function getFirstname(): string
     {
-        return $this->name;
+        return $this->firstname;
     }
 
     /**
-     * @param string $name
+     * @param string $firstName
      * @return $this
      */
-    public function setName(string $name): Entity
+    public function setFirstname(string $firstname): Entity
     {
-        $this->name = $name;
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastname(): string
+    {
+        return $this->lastname;
+    }
+
+    /**
+     * @param string $lastname
+     * @return $this
+     */
+    public function setLastname(string $lastname): Entity
+    {
+        $this->lastname = $lastname;
 
         return $this;
     }
@@ -66,5 +87,13 @@ class Entity
         $this->url = $url;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->getFirstname() . ' ' . $this->getLastname();
     }
 }

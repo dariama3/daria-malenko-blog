@@ -3,78 +3,37 @@ declare(strict_types=1);
 
 namespace Dariam\Blog\Model\Author;
 
-class Repository
+class Repository extends \Dariam\Framework\Database\AbstractRepository
 {
     public const TABLE = 'author';
 
-    private \DI\FactoryInterface $factory;
-
-    /**
-     * @param \DI\FactoryInterface $factory
-     */
-    public function __construct(\DI\FactoryInterface $factory)
-    {
-        $this->factory = $factory;
-    }
-
-    /**
-     * @return Entity[]
-     */
-    public function getList(): array
-    {
-        return [
-            1 => $this->makeEntity()->setAuthorId(1)
-                ->setName('Robert Downey Jr.')
-                ->setUrl('robert-downey-jr'),
-            2 => $this->makeEntity()->setAuthorId(2)
-                ->setName('Chris Evans')
-                ->setUrl('chris-evans'),
-            3 => $this->makeEntity()->setAuthorId(3)
-                ->setName('Scarlett Johansson')
-                ->setUrl('scarlett-johansson'),
-            4 => $this->makeEntity()->setAuthorId(4)
-                ->setName('Chris Hemsworth')
-                ->setUrl('chris-hemsworth'),
-        ];
-    }
+    public const ENTITY = Entity::class;
 
     /**
      * @param string $url
-     * @return ?Entity
+     * @return Entity|object|null
      */
     public function getByUrl(string $url): ?Entity
     {
-        $authors = array_filter(
-            $this->getList(),
-            static function ($author) use ($url) {
-                return $author->getUrl() === $url;
-            }
+        return $this->fetchOne(
+            $this->select()->where('url = :url'),
+            [
+                ':url' => $url
+            ]
         );
-
-        return array_pop($authors);
     }
 
     /**
      * @param int $authorId
-     * @return ?Entity
+     * @return Entity|object|null
      */
     public function getById(int $authorId): ?Entity
     {
-        $authors = array_filter(
-            $this->getList(),
-            static function ($author) use ($authorId) {
-                return $author->getAuthorId() === $authorId;
-            }
+        return $this->fetchOne(
+            $this->select()->where('author_id = :author_id'),
+            [
+                ':author_id' => $authorId
+            ]
         );
-
-        return array_pop($authors);
-    }
-
-    /**
-     * @return Entity
-     */
-    private function makeEntity(): Entity
-    {
-        return $this->factory->make(Entity::class);
     }
 }

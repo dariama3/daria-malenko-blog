@@ -15,7 +15,9 @@ class Entity
 
     private int $authorId;
 
-    private string $createdAt;
+    private int $createdAt;
+
+    private int $updatedAt;
 
     /**
      * @return int
@@ -113,20 +115,39 @@ class Entity
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getCreatedAt(): string
+    public function getCreatedAt(): int
     {
         return $this->createdAt;
     }
 
     /**
-     * @param string $createdAt
+     * @param int $createdAt
      * @return $this
      */
-    public function setCreatedAt(string $createdAt): Entity
+    public function setCreatedAt(int $createdAt): Entity
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getUpdatedAt(): int
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param int $updatedAt
+     * @return $this
+     */
+    public function setUpdatedAt(int $updatedAt): Entity
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

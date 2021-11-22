@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace Dariam\Blog\Block;
 
 use Dariam\Blog\Model\Category\Entity as CategoryEntity;
+use Dariam\Blog\Model\Category\Repository as CategoryRepository;
+use Dariam\Blog\Model\Post\Repository as PostRepository;
 
 class CategoryList extends \Dariam\Framework\View\Block
 {
@@ -25,6 +27,11 @@ class CategoryList extends \Dariam\Framework\View\Block
      */
     public function getCategories(): array
     {
-        return $this->categoryRepository->getList();
+        $select = $this->categoryRepository->select()
+            ->distinct(true)
+            ->fields(CategoryRepository::TABLE . '.*', true)
+            ->innerJoin(PostRepository::TABLE_CATEGORY_POST, '', 'USING(`category_id`)');
+
+        return $this->categoryRepository->fetchEntities($select);
     }
 }

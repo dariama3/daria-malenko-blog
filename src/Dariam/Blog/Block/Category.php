@@ -45,8 +45,8 @@ class Category extends \Dariam\Framework\View\Block
      */
     public function getCategoryPosts(): array
     {
-        return $this->postRepository->getByIds(
-            $this->getCategory()->getPostsIds()
+        return $this->postRepository->getByCategoryId(
+            $this->getCategory()->getCategoryId()
         );
     }
 
@@ -56,6 +56,8 @@ class Category extends \Dariam\Framework\View\Block
      */
     public function getPostAuthor(PostEntity $post): ?AuthorEntity
     {
-        return $this->authorRepository->getById($post->getAuthorId());
+        return $this->authorRepository->getById(
+            $post->getAuthorId()
+        );
     }
 }

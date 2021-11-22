@@ -39,6 +39,8 @@ class Post extends \Dariam\Framework\View\Block
      */
     public function getAuthor(): ?AuthorEntity
     {
-        return $this->authorRepository->getById($this->getPost()->getAuthorId());
+        return $this->authorRepository->getById(
+            $this->getPost()->getAuthorId()
+        );
     }
 }

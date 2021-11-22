@@ -39,6 +39,8 @@ class Author extends \Dariam\Framework\View\Block
      */
     public function getAuthorPosts(): array
     {
-        return $this->postRepository->getByAuthorId($this->getAuthor()->getAuthorId());
+        return $this->postRepository->getByAuthorId(
+            $this->getAuthor()->getAuthorId()
+        );
     }
 }

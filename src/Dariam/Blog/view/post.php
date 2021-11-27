@@ -4,7 +4,7 @@ $post = $block->getPost();
 $author = $block->getAuthor();
 ?>
 <section title="Post">
-    <img src="/post-placeholder.png" alt="<?= $post->getName() ?>" width="300"/>
+    <img src="/images/post-placeholder.png" alt="<?= $post->getName() ?>" width="300"/>
     <h1><?= $post->getName() ?></h1>
     <?php if ($author) : ?>
         <a href="<?= $author->getUrl() ?>"><?= $author->getName() ?></a>

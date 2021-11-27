@@ -4,32 +4,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>{DV.Campus} PHP Framework</title>
-    <style>
-        header,
-        main,
-        footer {
-            border: 1px dashed black;
-        }
-
-        .post-list {
-            column-gap: 1rem;
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .post-list .post {
-            border: 1px dashed;
-            max-width: 30%;
-            text-align: center;
-        }
-    </style>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <title>Dariam Blog</title>
+    <link rel="stylesheet" href="/css/main.min.css"/>
 </head>
 <body>
 <header>
-    <a href="/" title="{DV.Campus} PHP Framework">
-        <img src="/logo.jpg" alt="Dariam Logo" width="200"/>
+    <a href="/" title="Dariam Blog Homepage">
+        <img src="/images/logo.png" alt="Dariam Logo" width="200"/>
     </a>
     <nav>
         <?= $this->render(\Dariam\Blog\Block\CategoryList::class) ?>
@@ -54,7 +37,7 @@
             </li>
         </ul>
     </nav>
-    <p>© Default Value 2021. All Rights Reserved.</p>
+    <p>&copy; Default Value 2021. All Rights Reserved.</p>
 </footer>
 </body>
 </html>

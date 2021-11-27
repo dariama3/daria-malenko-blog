@@ -4,7 +4,7 @@
     <div class="post-list">
         <div class="post">
             <a href="/post-1" title="Post 1">
-                <img src="/post-placeholder.png" alt="Post 1" width="200"/>
+                <img src="/images/post-placeholder.png" alt="Post 1" width="200"/>
             </a>
             <a href="/post-1" title="Post 1">Post 1</a>
             <span>Robert Downey Jr.</span>
@@ -12,7 +12,7 @@
         </div>
         <div class="post">
             <a href="/post-2" title="Post 2">
-                <img src="/post-placeholder.png" alt="Post 2" width="200"/>
+                <img src="/images/post-placeholder.png" alt="Post 2" width="200"/>
             </a>
             <a href="/post-2" title="Post 2">Post 2</a>
             <span>Chris Evans</span>
@@ -20,7 +20,7 @@
         </div>
         <div class="post">
             <a href="/post-3" title="Post 3">
-                <img src="/post-placeholder.png" alt="Post 3" width="200"/>
+                <img src="/images/post-placeholder.png" alt="Post 3" width="200"/>
             </a>
             <a href="/post-3" title="Post 3">Post 3</a>
             <span>Scarlett Johansson</span>

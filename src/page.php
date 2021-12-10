@@ -10,34 +10,35 @@
     <link rel="stylesheet" href="/css/main.min.css"/>
 </head>
 <body>
-<header>
-    <a href="/" title="Dariam Blog Homepage">
-        <img src="/images/logo.png" alt="Dariam Logo" width="200"/>
+<header class="header content-wrapper">
+    <a class="header__logo" href="/" title="Dariam Blog Homepage">
+        <img src="/images/logo.png" alt="Dariam Logo" width="250"/>
     </a>
-    <nav>
+    <nav class="header__menu menu">
+        <button class="menu__control" type="button" title="Menu"><i></i><i></i><i></i></button>
         <?= $this->render(\Dariam\Blog\Block\CategoryList::class) ?>
     </nav>
 </header>
 
-<main>
+<main class="page-wrapper content-wrapper">
     <?= $this->render($this->getContent(), $this->getContentBlockTemplate()) ?>
 </main>
 
-<footer>
-    <nav>
-        <ul>
+<footer class="footer content-wrapper">
+    <nav class="footer__links">
+        <ul class="footer__links_list">
             <li>
-                <a href="/about-us">About Us</a>
+                <a class="footer__links_item" href="/about-us">About Us</a>
             </li>
             <li>
-                <a href="/terms-and-conditions">Terms & Conditions</a>
+                <a class="footer__links_item" href="/terms-and-conditions">Terms & Conditions</a>
             </li>
             <li>
-                <a href="/contact-us">Contact Us</a>
+                <a class="footer__links_item" href="/contact-us">Contact Us</a>
             </li>
         </ul>
     </nav>
-    <p>&copy; Default Value 2021. All Rights Reserved.</p>
+    <span class="footer__copy">&copy; Default Value 2021. All Rights Reserved.</span>
 </footer>
 </body>
 </html>

@@ -8,7 +8,7 @@ $author = $block->getAuthor();
         <?php foreach ($block->getAuthorPosts() as $post) : ?>
             <div class="post">
                 <a href="/<?= $post->getUrl() ?>" title="<?= $post->getName() ?>">
-                    <img src="/post-placeholder.png" alt="<?= $post->getName() ?>" width="200"/>
+                    <img src="/images/post-placeholder.png" alt="<?= $post->getName() ?>" width="200"/>
                     <h3><?= $post->getName() ?></h3>
                 </a>
                 <p><?= $post->getCreatedAt() ?></p>

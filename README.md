@@ -16,7 +16,9 @@ To start project with [Default Value Docker infrastructure](https://github.com/D
 6. Install Composer dependencies
 7. Create MySQL user, DB and grant permissions
 8. Setup DB schema and data
-9. Optional: generate test data:
+9. Optional: generate test data
+10. Install Grunt CLI
+11. Compile styles
 
 ```bash
 # 1. Clone the project
@@ -52,4 +54,10 @@ curl http://daria-malenko-blog.local/install
 
 # 9. Optional: generate test data
 docker exec -it daria-malenko-blog.local php bin/console install:generate-data
+
+# 10. Install Grunt CLI
+docker exec -it daria-malenko-blog.local npm install grunt --save-dev
+
+# 11. Compile styles
+docker exec -it daria-malenko-blog.local grunt
 ```

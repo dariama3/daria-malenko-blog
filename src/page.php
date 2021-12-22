@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <title>Dariam Blog</title>
     <link rel="stylesheet" href="/css/main.min.css"/>
+    <script type="module" src="/js/main.js" defer></script>
 </head>
 <body>
 <header class="header content-wrapper">
@@ -15,7 +16,7 @@
         <img src="/images/logo.png" alt="Dariam Logo" width="250"/>
     </a>
     <nav class="header__menu menu">
-        <button class="menu__control" type="button" title="Menu"><i></i><i></i><i></i></button>
+        <button class="menu__control" id="menu-btn-mobile" type="button" title="Menu"><i></i><i></i><i></i></button>
         <?= $this->render(\Dariam\Blog\Block\CategoryList::class) ?>
     </nav>
 </header>

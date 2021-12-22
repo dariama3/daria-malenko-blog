@@ -26,12 +26,8 @@
         }
     }
 
-    &__control:hover + &__list {
-        display: flex;
-    }
-
     &__list {
-        display: none;
+        display: flex;
         flex-direction: column;
 
         li:nth-child(n+6) { /* show ony 5 items */
@@ -54,6 +50,92 @@
             border-color: @color-white;
             color: @header-link-color-active;
             text-decoration: none;
+        }
+    }
+}
+
+@media (max-width: @screen__m) {
+    body {
+        &.open-menu {
+            overflow-y: hidden;
+
+            &:after {
+                background: @color-black;
+                content: '';
+                height: 100%;
+                left: 0;
+                opacity: 0.7;
+                position: fixed;
+                top: 0;
+                width: 100%;
+                z-index: 999;
+            }
+        }
+
+        header {
+            z-index: 1001;
+        }
+    }
+
+    .menu {
+        &__control {
+            i {
+                transition: all 0.2s;
+
+                &:first-child {
+                    transform-origin: top left;
+                }
+
+                &:last-child {
+                    transform-origin: bottom left;
+                }
+            }
+
+            &.active i {
+                &:first-child {
+                    transform: translateY(-100%) rotate(45deg) scaleX(1.3);
+                }
+
+                &:nth-child(2) {
+                    visibility: hidden;
+                    transition-duration: 0s;
+                }
+
+                &:last-child {
+                    transform: translateY(100%) rotate(-45deg) scaleX(1.3);
+                }
+            }
+        }
+
+        &__wrapper {
+            background-color: @background-color-grape;
+            box-sizing: border-box;
+            font-size: 1.2rem;
+            height: 100vh;
+            max-width: 75%;
+            min-width: 300px;
+            padding: 25px 40px;
+            position: fixed;
+            right: 0;
+            transform: translateX(100%);
+            transition: all 0.2s;
+            visibility: hidden;
+            word-break: break-word;
+
+            &.active {
+                transform: translateX(0);
+                visibility: visible;
+            }
+        }
+
+        &__list {
+            row-gap: 10px;
+        }
+
+        &__item {
+            color: @color-white;
+            text-align: center;
+            width: 100%;
         }
     }
 }

@@ -6,11 +6,15 @@
     position: relative;
 
     &__logo {
+        background-color: @background-color-grape;
         font-size: 0;
+        z-index: 2;
     }
 }
 
 .menu {
+    z-index: 1;
+
     &__control {
         border: 1px solid @header-link-color;
         left: 15px;
@@ -125,6 +129,23 @@
             &.active {
                 transform: translateX(0);
                 visibility: visible;
+            }
+
+            &--left {
+                left: 0;
+                right: initial;
+                transform: translateX(-100%);
+            }
+
+            &--top {
+                height: auto;
+                max-width: initial;
+                transform: translateY(-100%);
+                width: 100%;
+
+                &.active {
+                    position: initial;
+                }
             }
         }
 

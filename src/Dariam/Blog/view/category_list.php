@@ -1,7 +1,7 @@
 <?php
 /** @var \Dariam\Blog\Block\CategoryList $block */
 ?>
-<div class="menu__wrapper" id="navigation-menu">
+<div class="menu__wrapper menu__wrapper--left" id="navigation-menu">
     <ul class="menu__list">
         <?php foreach ($block->getCategories() as $category) : ?>
             <li>

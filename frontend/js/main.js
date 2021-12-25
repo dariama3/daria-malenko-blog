@@ -7,6 +7,7 @@ new MobileMenu({
 })
 
 new CampusSlider('.campus-slider', {
+    autoplay: true,
     navigation: true,
     loop: true,
     slidesPerView: 3,

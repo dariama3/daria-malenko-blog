@@ -17,6 +17,7 @@ const defaultParams = {
     additionalSlideClass: '',
     navigation: false,
     autoplay: false,
+    autoplayDelay: 2000,
     breakpoints: {},
 }
 
@@ -130,6 +131,9 @@ class CampusSlider {
         this.swipeStart = this.swipeStart.bind(this);
         this.swipeEnd = this.swipeEnd.bind(this);
         this.swipeAction = this.swipeAction.bind(this);
+        this.slideNext = this.slideNext.bind(this);
+        this.initAutoPlay = this.initAutoPlay.bind(this);
+
         this.initSlider();
     }
 
@@ -174,7 +178,7 @@ class CampusSlider {
         track.classList.add(initParams.trackClass);
         track.style.cssText = `
             transform: translate3d(0, 0, 0);
-            transition: transform ${ this.params.speed}ms
+            transition: transform ${this.params.speed}ms
         `
         /**
          *  children are actually not an array, they are NodeList, to use them as an array,
@@ -249,6 +253,15 @@ class CampusSlider {
         this.params.el.addEventListener('mousedown', this.swipeStart);
     }
 
+    /** slider autoplay initialization */
+    initAutoPlay() {
+        if (!this.params.autoplay) {
+            return
+        }
+
+        this.autoplay = setInterval(this.slideNext, this.params.autoplayDelay)
+    }
+
     /** update navigation button to track current index */
     updateNavigation() {
         if (this.params.loop) {
@@ -291,7 +304,7 @@ class CampusSlider {
         }, this.initParams)
     }
 
-    /** action to determing next slide move */
+    /** action to determine next slide move */
     slideNext() {
         if (this.activeIndex + this.params.slidesPerView < this.slides.length) {
             this.toSlide(this.activeIndex + 1, this.params.speed);
@@ -304,7 +317,7 @@ class CampusSlider {
         }
     }
 
-    /** action to determing prev slide move */
+    /** action to determine prev slide move */
     slidePrev() {
         if (this.activeIndex - 1 >= 0) {
             this.toSlide(this.activeIndex - 1, this.params.speed);
@@ -348,6 +361,8 @@ class CampusSlider {
         document.addEventListener('touchend', this.swipeEnd);
         document.addEventListener('mousemove', this.swipeAction);
         document.addEventListener('mouseup', this.swipeEnd);
+
+        clearInterval(this.autoplay)
     }
 
     /** Function fired on mouseup and touchend */
@@ -362,6 +377,9 @@ class CampusSlider {
         document.removeEventListener('mouseup', this.swipeEnd);
 
         this.toSlide(this.calculateSwipeDestinationIndex(), this.params.speed);
+
+        clearTimeout(this.autoplayTimeout)
+        this.autoplayTimeout = setTimeout(this.initAutoPlay, 5000)
     }
 
     /** record mouse / touch movement */
@@ -445,6 +463,7 @@ class CampusSlider {
         this.initNavigation();
         this.updateNavigation();
         this.initEvents();
+        this.initAutoPlay();
     }
 }
 
